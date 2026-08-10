@@ -879,6 +879,68 @@
             50% { box-shadow: 0 4px 32px rgba(159, 47, 45, 0.5); }
         }
 
+        .birthday-celebration {
+            text-align: center;
+            padding: 40px 24px;
+            background: var(--accent-pink-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            max-width: 640px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .birthday-celebration::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid rgba(159, 47, 45, 0.2);
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .birthday-emoji {
+            font-size: 56px;
+            line-height: 1;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            animation: bounce 1.8s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .birthday-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 500;
+            font-style: italic;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--accent-pink-text);
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .birthday-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--accent-pink-text);
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
         .confetti-container {
             position: fixed;
             top: 0;
@@ -1049,9 +1111,9 @@
     <section id="countdown" class="countdown-section">
         <div class="container">
             <div class="section-header fade-in">
-                <div class="section-eyebrow">Le grand jour</div>
-                <h2 class="section-title">L'heure du celebration</h2>
-                <p class="section-subtitle">
+                <div class="section-eyebrow" id="countdownEyebrow">Le grand jour</div>
+                <h2 class="section-title" id="countdownTitle">L'heure du celebration</h2>
+                <p class="section-subtitle" id="countdownSubtitle">
                     Chaque instant qui passe nous rapproche de ce moment unique.
                     21 ans, un nouveau chapitre qui s'ouvre.
                 </p>
@@ -1073,6 +1135,18 @@
                 <div class="countdown-unit">
                     <div class="countdown-number" id="seconds">00</div>
                     <div class="countdown-label">Secondes</div>
+                </div>
+            </div>
+
+            <div id="birthdayCelebration" style="display: none;">
+                <div class="birthday-celebration">
+                    <div class="birthday-emoji">🎂</div>
+                    <h3 class="birthday-title">C'est le grand jour !</h3>
+                    <p class="birthday-text">
+                        Aujourd'hui, Saoubrine souffle ses 21 bougies. 
+                        Profite de chaque instant, chante fort, 
+                        ris aux eclats — tu merites tout le bonheur du monde.
+                    </p>
                 </div>
             </div>
         </div>
@@ -1301,6 +1375,45 @@
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+            if (diff <= 1000 && !window.__birthdayTriggered) {
+                window.__birthdayTriggered = true;
+                showBirthdayCelebration();
+            }
+        }
+
+        function showBirthdayCelebration() {
+            const grid = document.getElementById('countdownGrid');
+            const celebration = document.getElementById('birthdayCelebration');
+            const eyebrow = document.getElementById('countdownEyebrow');
+            const title = document.getElementById('countdownTitle');
+            const subtitle = document.getElementById('countdownSubtitle');
+
+            if (grid) grid.style.display = 'none';
+            if (celebration) celebration.style.display = 'block';
+            if (eyebrow) eyebrow.textContent = 'C\'est aujourd\'hui';
+            if (title) title.textContent = 'Joyeux Anniversaire !';
+            if (subtitle) subtitle.textContent = 'Le jour J est arrive. Que cette annee soit la plus belle de toutes.';
+
+            if (typeof createConfetti === 'function') {
+                createConfetti();
+                setTimeout(createConfetti, 400);
+                setTimeout(createConfetti, 900);
+            }
+        }
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const todayStr = today.toDateString();
+        const storedDate = localStorage.getItem('__birthdayDate');
+        const initialNow = new Date();
+        const initialTomorrow = new Date(initialNow);
+        initialTomorrow.setDate(initialTomorrow.getDate() + 1);
+        initialTomorrow.setHours(0, 0, 0, 0);
+        if ((initialTomorrow - initialNow) <= 1000 || storedDate === todayStr) {
+            window.__birthdayTriggered = true;
+            setTimeout(showBirthdayCelebration, 0);
+            localStorage.setItem('__birthdayDate', todayStr);
         }
 
         updateCountdown();
