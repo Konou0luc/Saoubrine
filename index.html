@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyeux Anniversaire Saoubrine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --canvas: #F7F6F3;
+            --surface: #FFFFFF;
+            --border: #EAEAEA;
+            --text-primary: #2F3437;
+            --text-secondary: #787774;
+            --accent-pink-bg: #FDEBEC;
+            --accent-pink-text: #9F2F2D;
+            --accent-yellow-bg: #FBF3DB;
+            --accent-yellow-text: #956400;
+            --accent-blue-bg: #E1F3FE;
+            --accent-blue-text: #1F6C9F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--canvas);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+        }
+
+        .ambient-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: drift 25s ease-in-out infinite;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #9F2F2D 0%, transparent 70%);
+            top: -200px;
+            left: -150px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #956400 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -8s;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -30px) scale(1.05); }
+            66% { transform: translate(-30px, 40px) scale(0.95); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            padding: 120px 0;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger > * {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .stagger.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger.visible > *:nth-child(1) { transition-delay: 0ms; }
+        .stagger.visible > *:nth-child(2) { transition-delay: 80ms; }
+        .stagger.visible > *:nth-child(3) { transition-delay: 160ms; }
+        .stagger.visible > *:nth-child(4) { transition-delay: 240ms; }
+        .stagger.visible > *:nth-child(5) { transition-delay: 320ms; }
+        .stagger.visible > *:nth-child(6) { transition-delay: 400ms; }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .tag-pink {
+            background: var(--accent-pink-bg);
+            color: var(--accent-pink-text);
+        }
+
+        .tag-yellow {
+            background: var(--accent-yellow-bg);
+            color: var(--accent-yellow-text);
+        }
+
+        .meta-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .meta-date {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 7vw, 96px);
+            font-weight: 500;
+            line-height: 1.02;
+            letter-spacing: -0.03em;
+            margin-bottom: 32px;
+            color: var(--text-primary);
+        }
+
+        .hero-title em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--accent-pink-text);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 48px;
+            max-width: 480px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            border: none;
+            cursor: pointer;
+            transition: all 200ms ease;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .btn-primary {
+            background: var(--text-primary);
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background: #444444;
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+            transform: scale(0.98);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .photo-frame {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(247, 246, 243, 0) 0%, 
+                rgba(247, 246, 243, 0) 60%,
+                rgba(247, 246, 243, 0.15) 100%);
+            pointer-events: none;
+        }
+
+        .photo-grain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.04;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .age-badge {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .age-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 500;
+            line-height: 1;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .age-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .deco-line {
+            position: absolute;
+            background: var(--border);
+        }
+
+        .deco-line-1 {
+            width: 1px;
+            height: 80px;
+            top: -40px;
+            left: 32px;
+        }
+
+        .deco-line-2 {
+            width: 80px;
+            height: 1px;
+            bottom: 32px;
+            right: -40px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-pink-text);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 500;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            max-width: 720px;
+            margin: 0 auto 24px;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .wishes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .wish-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px 32px;
+            transition: all 300ms ease;
+        }
+
+        .wish-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .wish-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 22px;
+        }
+
+        .wish-icon-1 {
+            background: var(--accent-pink-bg);
+            color: var(--accent-pink-text);
+        }
+
+        .wish-icon-2 {
+            background: var(--accent-yellow-bg);
+            color: var(--accent-yellow-text);
+        }
+
+        .wish-icon-3 {
+            background: var(--accent-blue-bg);
+            color: var(--accent-blue-text);
+        }
+
+        .wish-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .wish-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .letter-section {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .letter-container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .letter {
+            background: var(--canvas);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 64px 56px;
+            position: relative;
+        }
+
+        .letter::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-pink-bg);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .letter-greeting {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 500;
+            font-style: italic;
+            margin-bottom: 32px;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .letter-body {
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .letter-body p {
+            margin-bottom: 20px;
+        }
+
+        .letter-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .letter-signature {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .signature-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .signature-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-style: italic;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .countdown-section {
+            text-align: center;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            max-width: 640px;
+            margin: 0 auto 48px;
+        }
+
+        .countdown-unit {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px 16px;
+        }
+
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .countdown-number.accent {
+            color: var(--accent-pink-text);
+        }
+
+        .countdown-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .featured-quote {
+            max-width: 820px;
+            margin: 0 auto 80px;
+            text-align: center;
+            position: relative;
+            padding: 0 24px;
+        }
+
+        .featured-quote::before {
+            content: '\201C';
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 180px;
+            font-weight: 400;
+            line-height: 1;
+            color: var(--accent-pink-bg);
+            z-index: 0;
+        }
+
+        .featured-quote-text {
+            position: relative;
+            z-index: 1;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 3vw, 36px);
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .featured-quote-author {
+            position: relative;
+            z-index: 1;
+            margin-top: 24px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .qualities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .quality-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 36px 32px;
+            background: var(--surface);
+            transition: all 300ms ease;
+        }
+
+        .quality-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .quality-card-pink {
+            background: var(--accent-pink-bg);
+            border-color: transparent;
+        }
+
+        .quality-card-yellow {
+            background: var(--accent-yellow-bg);
+            border-color: transparent;
+        }
+
+        .quality-card-blue {
+            background: var(--accent-blue-bg);
+            border-color: transparent;
+        }
+
+        .quality-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            opacity: 0.85;
+        }
+
+        .quality-card-pink .quality-number {
+            color: var(--accent-pink-text);
+        }
+
+        .quality-card-yellow .quality-number {
+            color: var(--accent-yellow-text);
+        }
+
+        .quality-card-blue .quality-number {
+            color: var(--accent-blue-text);
+        }
+
+        .quality-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .quality-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .quality-card-pink .quality-title,
+        .quality-card-pink .quality-text {
+            color: var(--accent-pink-text);
+        }
+
+        .quality-card-yellow .quality-title,
+        .quality-card-yellow .quality-text {
+            color: var(--accent-yellow-text);
+        }
+
+        .quality-card-blue .quality-title,
+        .quality-card-blue .quality-text {
+            color: var(--accent-blue-text);
+        }
+
+        .song-section {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .song-container {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .song-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .song-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent-pink-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-pink-text);
+        }
+
+        .song-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 500;
+            font-style: italic;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .song-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 48px;
+            max-width: 520px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--canvas);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .song-footer {
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .song-dedication {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .song-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--text-primary);
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            transition: all 200ms ease;
+        }
+
+        .song-btn:hover {
+            background: #444;
+            transform: scale(0.98);
+        }
+
+        footer {
+            padding: 64px 0 80px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .footer-heart {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .heart-icon {
+            color: var(--accent-pink-text);
+            font-size: 16px;
+        }
+
+        .surprise-btn {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--accent-pink-text);
+            color: #FFFFFF;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: all 300ms ease;
+            box-shadow: 0 4px 16px rgba(159, 47, 45, 0.3);
+        }
+
+        .surprise-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 24px rgba(159, 47, 45, 0.4);
+        }
+
+        .surprise-btn.pulsing {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 16px rgba(159, 47, 45, 0.3); }
+            50% { box-shadow: 0 4px 32px rgba(159, 47, 45, 0.5); }
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -20px;
+            animation: confetti-fall linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 64px;
+            }
+
+            .wishes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .qualities-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .featured-quote::before {
+                font-size: 140px;
+                top: -48px;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .letter {
+                padding: 40px 28px;
+            }
+
+            .song-footer {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 48px 0;
+            }
+
+            .countdown-number {
+                font-size: 40px;
+            }
+
+            .countdown-unit {
+                padding: 24px 12px;
+            }
+
+            .qualities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-quote {
+                padding: 0 12px;
+            }
+
+            .featured-quote::before {
+                font-size: 110px;
+                top: -36px;
+            }
+
+            .quality-number {
+                font-size: 40px;
+            }
+
+            .surprise-btn {
+                width: 56px;
+                height: 56px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-bg">
+        <div class="ambient-blob blob-1"></div>
+        <div class="ambient-blob blob-2"></div>
+    </div>
+
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content fade-in">
+                    <div class="hero-meta">
+                        <span class="tag tag-pink">Anniversaire</span>
+                        <span class="meta-dot"></span>
+                        <span class="meta-date">11 Aout 2026</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Joyeux<br>
+                        Anniversaire<br>
+                        <em>Saoubrine</em>
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        Aujourd'hui est un jour special. Celui ou une personne 
+                        extraordinaire a vu le jour il y a 21 ans deja. Une annee 
+                        de plus de bonheur, de rires et de souvenirs a ecrire.
+                    </p>
+                    
+                    <div class="hero-actions">
+                        <a href="#letter" class="btn btn-primary">Lire le message</a>
+                        <a href="#wishes" class="btn btn-secondary">Mes voeux</a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual fade-in">
+                    <div class="deco-line deco-line-1"></div>
+                    <div class="deco-line deco-line-2"></div>
+                    
+                    <div class="photo-frame">
+                        <img src="assets/saoubrine.jpeg" alt="Saoubrine">
+                        <div class="photo-grain"></div>
+                        <div class="photo-overlay"></div>
+                        
+                        <div class="age-badge">
+                            <span class="age-number">21</span>
+                            <span class="age-label">Ans</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="countdown" class="countdown-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-eyebrow">Le grand jour</div>
+                <h2 class="section-title">L'heure du celebration</h2>
+                <p class="section-subtitle">
+                    Chaque instant qui passe nous rapproche de ce moment unique.
+                    21 ans, un nouveau chapitre qui s'ouvre.
+                </p>
+            </div>
+            
+            <div class="countdown-grid stagger" id="countdownGrid">
+                <div class="countdown-unit">
+                    <div class="countdown-number accent" id="days">00</div>
+                    <div class="countdown-label">Jours</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Heures</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Secondes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wishes">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-eyebrow">Mes souhaits</div>
+                <h2 class="section-title">Trois voeux pour toi</h2>
+                <p class="section-subtitle">
+                    Pour tes 21 ans, je souhaite que la vie te comble de tout
+                    ce qui te rend heureuse.
+                </p>
+            </div>
+            
+            <div class="wishes-grid stagger">
+                <div class="wish-card">
+                    <div class="wish-icon wish-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="wish-title">L'amour & le Bonheur</h3>
+                    <p class="wish-text">
+                        Que ton coeur soit toujours rempli d'amour, 
+                        que chaque jour t'apporte son lot de joies 
+                        simples et de moments qui te font sourire 
+                        aux larmes.
+                    </p>
+                </div>
+                
+                <div class="wish-card">
+                    <div class="wish-icon wish-icon-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="wish-title">La reussite</h3>
+                    <p class="wish-text">
+                        Que tous tes reves se realisent, que tes 
+                        projets aboutissent, et que tu te rendes 
+                        compte chaque jour un peu plus du talent 
+                        et de la force que tu caches en toi.
+                    </p>
+                </div>
+                
+                <div class="wish-card">
+                    <div class="wish-icon wish-icon-3">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="wish-title">La sante & le Temps</h3>
+                    <p class="wish-text">
+                        Une sante de fer pour vivre mille vies, 
+                        et le temps de profiter de chaque instant, 
+                        de chaque personne qui compte pour toi.
+                        Tu le merites.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="letter" class="letter-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-eyebrow">Du fond du coeur</div>
+                <h2 class="section-title">Une lettre pour toi</h2>
+            </div>
+            
+            <div class="letter-container fade-in">
+                <div class="letter">
+                    <div class="letter-greeting">Saoubrine,</div>
+                    
+                    <div class="letter-body">
+                        <p>
+                            Ca fait deja un mois que l'on s'est rencontrees, et deja, 
+                            je voulais te dire a quel point je suis content de t'avoir 
+                            dans ma vie. Un mois, c'est court, mais c'est suffisant pour 
+                            voir que tu es quelqu'un de special — et que ce n'est que 
+                            le debut.
+                        </p>
+                        
+                        <p>
+                            Pour tes 21 ans, je n'ai pas de cadeau physique a t'offrir. 
+                            Pas de parfum, pas de bijou, pas de boite a decorer. 
+                            Mais ce que j'ai prepare, c'est quelque chose qui restera. 
+                            Un petit coin sur internet, fait main, rien que pour toi — 
+                            un endroit ou tu pourras revenir quand tu voudras, ou la 
+                            chanson tournera toujours, ou ces mots seront toujours la. 
+                            Un cadeau qui ne se casse pas, qui ne s'use pas, et qui 
+                            t'appartiendra pour toujours.
+                        </p>
+                        
+                        <p>
+                            Je voulais te dire que je suis impatient de voir ce 
+                            que notre amitie nous reserve. De rire de plus en plus, 
+                            de partager des moments qui feront de bons souvenirs, 
+                            d'apprendre a te connaitre encore un peu plus chaque jour. 
+                            Parce que ce qui est bien avec les choses qui commencent 
+                            bien, c'est qu'elles promettent quelque chose de grand.
+                        </p>
+                        
+                        <p>
+                            Joyeux 21 ans, Saoubrine. Profite bien de ta journee, 
+                            tu le merites plus que personne. Et souviens-toi : 
+                            ce petit site est la pour toujours. Comme mon amitie.
+                        </p>
+                    </div>
+                    
+                    <div class="letter-signature">
+                        <div class="signature-label">A ton ami, pour toujours</div>
+                        <div class="signature-name">Avec tout mon coeur</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="song" class="song-section">
+        <div class="container">
+            <div class="song-container fade-in">
+                <div class="song-label">
+                    <div class="song-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18V5l12-2v13"/>
+                            <circle cx="6" cy="18" r="3"/>
+                            <circle cx="18" cy="16" r="3"/>
+                        </svg>
+                    </div>
+                    <span class="section-eyebrow" style="margin: 0;">Une chanson pour toi</span>
+                </div>
+                
+                <h2 class="song-title">
+                    Ta chanson preferee,<br>
+                    celle qui me rappelle toi.
+                </h2>
+                
+                <p class="song-subtitle">
+                    Parce que certaines melodies sont faites pour rester, 
+                    tout comme les personnes qui comptent. Joue-la, 
+                    ecoute-la, et pense a moi.
+                </p>
+                
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/qE7rEWXGPSA?si=IwINpSEBQBPG8u6k" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <div class="song-footer">
+                    <div class="song-dedication">Dedie a Saoubrine, avec tout mon coeur.</div>
+                    <a href="https://youtu.be/qE7rEWXGPSA?si=IwINpSEBQBPG8u6k" target="_blank" rel="noopener noreferrer" class="song-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                        Ouvrir sur YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container fade-in">
+            <p class="footer-text">Bonne fete, Saoubrine. Les 21 ans te vont a merveille.</p>
+            <div class="footer-heart">
+                <span>Fabrique avec</span>
+                <span class="heart-icon">♥</span>
+                <span>pour toi</span>
+            </div>
+        </div>
+    </footer>
+
+    <button class="surprise-btn pulsing" id="surpriseBtn" title="Surprise">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z"/>
+            <path d="m8 14 4-4 4 4"/>
+            <path d="M12 10v10"/>
+        </svg>
+    </button>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .stagger').forEach(el => {
+            observer.observe(el);
+        });
+
+        function updateCountdown() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+
+            const diff = tomorrow - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        const colors = [
+            '#9F2F2D',
+            '#956400',
+            '#1F6C9F',
+            '#FDEBEC',
+            '#FBF3DB',
+            '#E1F3FE',
+            '#2F3437'
+        ];
+
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const count = 120;
+
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 10 + 6) + 'px';
+                confetti.style.height = (Math.random() * 10 + 6) + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                confetti.style.animationDelay = (Math.random() * 0.5) + 's';
+                container.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        const surpriseBtn = document.getElementById('surpriseBtn');
+        let surpriseUsed = false;
+
+        surpriseBtn.addEventListener('click', () => {
+            createConfetti();
+
+            if (!surpriseUsed) {
+                surpriseBtn.classList.remove('pulsing');
+                surpriseUsed = true;
+            }
+
+            if (window.innerWidth > 768) {
+                document.documentElement.style.scrollBehavior = 'smooth';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+
+        setTimeout(() => {
+            document.querySelectorAll('.hero .fade-in').forEach(el => {
+                el.classList.add('visible');
+            });
+        }, 100);
+    </script>
+</body>
+</html>
